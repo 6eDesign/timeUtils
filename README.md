@@ -39,6 +39,12 @@ h | 12-hour format of the hour, with leading 0's | 01, 02, ... 12
 H | 24-hour format of the hour, with leading 0's | 00, 01, ... 23
 i | Minutes with leading 0's | 00, 01, ... 59
 s | Seconds with leading 0's | 00, 01, ... 59
-T | Timezone abbreviation | "EST", "MDT", ...
-O | Difference to Greenwich time (GMT) in hours | +0200, -0200, ...
-P | Difference to Greenwich time (GMT) in hours, with semicolon separator | +02:00, -02:00, ...
+
+###Examples
+`var date = new Date()`
+
+> Mon Apr 06 2015 21:51:08 GMT-0600 (Mountain Daylight Time)
+
+`timeUtils.formatDate(date,'Your appointment is on #{l}, #{F} #{m}, #{Y} at #{g}:#{i} #{A}.')`
+
+> "Your appointment is on Monday, April 04, 2015 at 9:48 PM."
