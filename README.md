@@ -1,6 +1,6 @@
 ######6eDesign.net
 ## timeUtils.js
-Time/date formatter for JavaScript which uses PHP-like syntax to easily format JavaScript date objects into legible, formatted, human-consumable strings. 
+Time/date formatter for JavaScript which uses PHP-like syntax to easily format JavaScript date objects into legible, formatted, human-consumable strings.  It works in the browser and also in Node.js and is only 1.3KB (minified & gzipped). 
 
 Using timeUtils.js is very simple: 
 
@@ -48,3 +48,10 @@ s | Seconds with leading 0's | 00, 01, ... 59
 `timeUtils.formatDate(date,'Your appointment is on #{l}, #{F} #{m}, #{Y} at #{g}:#{i} #{A}.')`
 
 > "Your appointment is on Monday, April 04, 2015 at 9:48 PM."
+
+
+### Using in Node.js
+
+`var timeUtils = require('./timeUtils');
+timeUtils.formatDate(new Date());`
+> '04/06/2015'
