@@ -87,7 +87,7 @@ var timeUtils = (function(w,d,pub){
     // A: uppercase ante merdiiem and post meridiem 'AM' or 'PM'
     { key: 'A', method: function(date) { return (date.getHours() > 11) ? 'PM' : 'AM'; } },
     // g: 12-hour format of an hour without leading zeros 1-12
-    { key: 'g', method: function(date) { return date.getHours%12; } },
+    { key: 'g', method: function(date) { return date.getHours() % 12; } },
     // G: 24-hour format of an hour without leading zeros 0-23
     { key: 'G', method: function(date) { return date.getHours(); } },
     // h: 12-hour format of an hour with leading zeros 01-12
