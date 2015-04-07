@@ -1,5 +1,4 @@
-var timeUtils = (function(pub,modules){
-  if(typeof modules == 'undefined') modules = { }; 
+var timeUtils = (function(pub){
 
   /**
    * generic function to inject data into token-laden string
@@ -133,9 +132,6 @@ var timeUtils = (function(pub,modules){
     return template;
   };
 
-  // for my node peeps
-  module.exports = pub; 
-
   return pub;
 
-})({},typeof module == 'undefined' ? { } : module);
+})((typeof exports === 'undefined') ? {} : exports);
