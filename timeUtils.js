@@ -1,4 +1,4 @@
-var timeUtil = (function(w,d,pub){
+var timeUtils = (function(w,d,pub){
 
   /**
    * generic function to inject data into token-laden string
@@ -97,13 +97,13 @@ var timeUtil = (function(w,d,pub){
     // i: Minutes with leading zeros 00-59
     { key: 'i', method: function(date) { return enforceLength(date.getMinutes(),2); } },
     // s: Seconds with leading zeros 00-59
-    { key: 's', method: function(date) { return enforceLength(date.getSeconds(),2); } },
-    // T: Timezone abbreviation "EST", "MDT", ...
-    { key: 'T', method: function(date) { return date.getTimezone(); } },
+    { key: 's', method: function(date) { return enforceLength(date.getSeconds(),2); } }
+    // // T: Timezone abbreviation "EST", "MDT", ...
+    // { key: 'T', method: function(date) { return date.getTimezone(); } },
     // O: Difference to Greenwich time (GMT) in hours  +0200, -0200
-    { key: 'O', method: function(date) { return date.getGMTOffset(); } }
+    // { key: 'O', method: function(date) { return date.getGMTOffset(); } },
     // 'P': Difference to Greenwich time (GMT) w/ semicolon between hours:minutes +02:00
-    { key: 'P', method: function(date) { var offset = date.getGMTOffset(); return offset.slice(0,3)+':'+offset.slice(3); } }
+    // { key: 'P', method: function(date) { var offset = date.getGMTOffset(); return offset.slice(0,3)+':'+offset.slice(3); } }
   ];
 
   /**
@@ -124,38 +124,12 @@ var timeUtil = (function(w,d,pub){
         template = pub.injectStringData(template,acceptedDateTokens[i].key,acceptedDateTokens[i].method(date));
       }
     }
+    for(var i=0; i < acceptedTimeTokens.length; ++i) {
+      if(template.indexOf('#{'+acceptedTimeTokens[i].key+'}') > -1) {
+        template = pub.injectStringData(template,acceptedTimeTokens[i].key,acceptedTimeTokens[i].method(date));
+      }
+    }
     return template;
-  };
-
-  // end date formatting section
-
-  /**
-   * generic popup window fn
-   * @param url {String} Required
-   * @param title {String} Optional
-   * @param sizes {Object} Required
-   * @returns {boolean}
-   */
-  pub.popupWindow = function(url, title, sizes) {
-    var width, height, top, left;
-    if (typeof url == 'undefined') return false;
-    if (typeof title == 'object'
-      && typeof sizes == 'undefined') {
-      sizes = title;
-      title = '';
-    }
-    if (typeof sizes == 'undefined') {
-      sizes = {
-        width: 550,
-        height: 375
-      };
-    }
-    left = (w.screen.width / 2) - (sizes.width / 2);
-    top = (w.screen.height / 2) - (sizes.height / 2);
-    w.setTimeout(function(){
-      w.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + sizes.width + ', height=' + sizes.height + ', top=' + top + ', left=' + left);
-    },10);
-    return false;
   };
 
   return pub;
