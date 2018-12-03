@@ -4,7 +4,7 @@
 ## 6eDesign.net
 
 ## timeUtils.js
-Simple time/date formatter for JavaScript which uses PHP-like syntax to easily format JavaScript date objects into legible/formatted strings.  It works in the browser and Node.js and is quite small 1.3KB (minified & gzipped). 
+Simple time/date formatter for JavaScript which uses PHP-like syntax to easily format JavaScript date objects into legible/formatted strings.  It works in the browser and Node.js and is quite small ~1.3KB (minified & gzipped). 
 
 ## Installation & Including the Script:
 
