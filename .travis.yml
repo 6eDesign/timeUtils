@@ -1,13 +1,9 @@
-image: node:6
-
-before_script: 
-    - npm install
-
-cache: 
-  paths: 
-    - node_modules/
-
-test:node:6:  
-  script:
-    - npm run build
-    - npm test
+language: node_js
+node_js:
+  - "node"
+deploy:
+  provider: npm
+  email: jon@6eDesign.net
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
