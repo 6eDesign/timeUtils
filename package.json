@@ -1,30 +1,33 @@
 {
   "name": "timeUtils",
-  "version": "0.0.0",
+  "version": "1.0.2",
   "description": "timeUtils.js - Time/date formatter for JavaScript which uses PHP-like syntax to easily format JavaScript date objects into legible, formatted, & human-consumable strings.",
-  "main": "index.js",
+  "main": "dist/timeUtils.cjs.js",
+  "module": "dist/timeUtils.esm.js",
+  "browser": "dist/timeUtils.umd.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "env buildTarget=prod node_modules/.bin/rollup -c",
+    "prepare": "npm run build",
+    "test": "node_modules/.bin/tape test/index.js",
+    "watch": "node_modules/.bin/rollup -c -w"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/6eDesign/timeUtils.git"
   },
-  "author": "",
+  "author": "Jonathan Greenemeier",
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/6eDesign/timeUtils/issues"
   },
   "devDependencies": {
-    "gulp": "~3.8.1",
-    "gulp-concat": "~2.2.0",
-    "gulp-less": "~1.2.3",
-    "gulp-livereload": "^2.1.0",
-    "gulp-minify-css": "~0.3.5",
-    "gulp-uglify": "~0.3.1",
-    "lodash": ""
-  },
-  "dependencies": {
-    "lodash": ""
+    "faucet": "0.0.1",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^0.67.4",
+    "rollup-plugin-buble": "^0.19.4",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-uglify": "^6.0.0",
+    "tape": "^4.9.1"
   }
 }

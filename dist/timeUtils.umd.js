@@ -1,4 +1,8 @@
-var timeUtils = (function(pub){
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.timeUtils = {})));
+}(this, (function (exports) { 'use strict';
 
   /**
    * generic function to inject data into token-laden string
@@ -7,23 +11,18 @@ var timeUtils = (function(pub){
    * @param value {String|Integer} Required
    * @returns {String}
    *
-   * Pass this function a string with encoded tokens, example: 
-   *    util.injectStringData("The following is a token: #{tokenName}", "tokenName", 123); 
-   *   
-   *    Returns: "The following is a token: 123"
+   * @example
+   * injectStringData("The following is a token: #{tokenName}", "tokenName", 123); 
+   * @returns {String} "The following is a token: 123"
    *
    */
-  pub.injectStringData = function(str,name,value) {
+  var injectStringData = function(str,name,value) {
     return str.replace(new RegExp('#{'+name+'}','g'),value);
   };
 
   /**
-   * generic function to enforce length of string
-   * @param str {String} Required
-   * @param length {Integer} Required
-   * @param fromBack {Boolean} Optional
-   * @returns {String}
-   *
+   * Generic function to enforce length of string. 
+   * 
    * Pass a string or number to this function and specify the desired length.
    * This function will either pad the # with leading 0's (if str.length < length)
    * or remove data from the end (@fromBack==false) or beginning (@fromBack==true)
@@ -31,16 +30,22 @@ var timeUtils = (function(pub){
    *
    * When length == str.length or typeof length == 'undefined', this function
    * returns the original @str parameter.
+   * 
+   * @param str {String} Required
+   * @param length {Integer} Required
+   * @param fromBack {Boolean} Optional
+   * @returns {String}
+   *
    *
    */
   var enforceLength = function(str,length,fromBack) {
     str = str.toString();
-    if(typeof length == 'undefined') return str;
-    if(str.length == length) return str;
+    if(typeof length == 'undefined') { return str; }
+    if(str.length == length) { return str; }
     fromBack = (typeof fromBack == 'undefined') ? false : fromBack;
     if(str.length < length) {
       // pad the beginning of the string w/ enough 0's to reach desired length:
-      while(length - str.length > 0) str = '0' + str;
+      while(length - str.length > 0) { str = '0' + str; }
     } else if(str.length > length) {
       if(fromBack) {
         // grab the desired #/chars from end of string: ex: '2015' -> '15'
@@ -56,7 +61,6 @@ var timeUtils = (function(pub){
   // Internal variables for storing days of week, months of year: 
   var daysOfWeek = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ];
   var monthsOfYear = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
-
 
   var acceptedDateTokens = [
     // d: day of the month, 2 digits with leading zeros:
@@ -97,14 +101,12 @@ var timeUtils = (function(pub){
     // i: Minutes with leading zeros 00-59
     { key: 'i', method: function(date) { return enforceLength(date.getMinutes(),2); } },
     // s: Seconds with leading zeros 00-59
-    { key: 's', method: function(date) { return enforceLength(date.getSeconds(),2); } }
-    // // T: Timezone abbreviation "EST", "MDT", ...
-    // { key: 'T', method: function(date) { return date.getTimezone(); } },
-    // O: Difference to Greenwich time (GMT) in hours  +0200, -0200
-    // { key: 'O', method: function(date) { return date.getGMTOffset(); } },
-    // 'P': Difference to Greenwich time (GMT) w/ semicolon between hours:minutes +02:00
-    // { key: 'P', method: function(date) { var offset = date.getGMTOffset(); return offset.slice(0,3)+':'+offset.slice(3); } }
-  ];
+    { key: 's', method: function(date) { return enforceLength(date.getSeconds(),2); } } ];
+
+  var internationalize = function (days,months) { 
+    daysOfWeek = days; 
+    monthsOfYear = months;
+  };
 
   /**
    * generic formatDate function which accepts dynamic templates
@@ -112,26 +114,29 @@ var timeUtils = (function(pub){
    * @param template {String} Optional
    * @returns {String}
    *
-   * pass a date and a template, such as:
-   *
-   *    util.formatDate(new Date(), '#{M}. #{j}, #{Y}')
+   * @example
+   * formatDate(new Date(), '#{M}. #{j}, #{Y}')
+   * @returns {Number} Returns a formatted date
    *
    */
-  pub.formatDate = function(date,template) {
-    template = (typeof template == 'undefined') ? '#{m}/#{d}/#{Y}' : template;
-    for(var i=0; i < acceptedDateTokens.length; ++i) {
-      if(template.indexOf('#{'+acceptedDateTokens[i].key+'}') > -1) {
-        template = pub.injectStringData(template,acceptedDateTokens[i].key,acceptedDateTokens[i].method(date));
-      }
-    }
-    for(var i=0; i < acceptedTimeTokens.length; ++i) {
-      if(template.indexOf('#{'+acceptedTimeTokens[i].key+'}') > -1) {
-        template = pub.injectStringData(template,acceptedTimeTokens[i].key,acceptedTimeTokens[i].method(date));
-      }
-    }
+  var formatDate = function (date,template) {
+    if ( template === void 0 ) template='#{m}/#{d}/#{Y}';
+
+    acceptedDateTokens.forEach(function (token) {
+      if(template.indexOf(("#{" + (token.key) + "}")) == -1) { return; } 
+      template = injectStringData(template,token.key,token.method(date));
+    }); 
+    acceptedTimeTokens.forEach(function (token) {
+      if(template.indexOf(("#{" + (token.key) + "}")) == -1) { return; }
+      template = injectStringData(template,token.key,token.method(date));
+    });
     return template;
   };
 
-  return pub;
+  exports.internationalize = internationalize;
+  exports.formatDate = formatDate;
 
-})((typeof exports === 'undefined') ? {} : exports);
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+//# sourceMappingURL=timeUtils.umd.js.map
