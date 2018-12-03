@@ -7,7 +7,7 @@
   "browser": "dist/timeUtils.umd.js",
   "scripts": {
     "build": "env buildTarget=prod node_modules/.bin/rollup -c",
-    "release": "standard-version && git push --follow-tags origin master",
+    "release": "npm run build && standard-version && git push --follow-tags origin master",
     "test": "node_modules/.bin/tape test/index.js",
     "watch": "node_modules/.bin/rollup -c -w"
   },
