@@ -18,7 +18,7 @@ Then include the module..
 As an import: 
 
 ```javascript
-import formatDate from 'timeUtils'
+import { formatDate } from 'timeUtils'
 ```
 
 As a Common JS library: 
