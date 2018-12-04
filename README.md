@@ -2,7 +2,7 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![npm version](https://badge.fury.io/js/timeUtils.svg)](https://badge.fury.io/js/timeUtils)
 
-## timeUtils.js
+# timeUtils.js
 Simple time/date formatter for JavaScript which uses PHP-like syntax to easily format JavaScript date objects into legible/formatted strings.  It works in the browser and Node.js and is quite small ~1.3KB (minified & gzipped). 
 
 ## Installation & Including the Script:
