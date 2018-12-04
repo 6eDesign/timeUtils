@@ -14,9 +14,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
  * @returns {String} "The following is a token: 123"
  *
  */
-var injectStringData = function(str,name,value) {
-  return str.replace(new RegExp('#{'+name+'}','g'),value);
-};
+const injectStringData = (str,name,value) => str
+  .replace(new RegExp('#{'+name+'}','g'), value);
 
 /**
  * Generic function to enforce length of string. 
@@ -34,9 +33,8 @@ var injectStringData = function(str,name,value) {
  * @param fromBack {Boolean} Optional
  * @returns {String}
  *
- *
  */
-var enforceLength = function(str,length,fromBack) {
+const enforceLength = function(str,length,fromBack) {
   str = str.toString();
   if(typeof length == 'undefined') return str;
   if(str.length == length) return str;
@@ -56,61 +54,141 @@ var enforceLength = function(str,length,fromBack) {
   return str;
 };
 
-// Internal variables for storing days of week, months of year: 
-var daysOfWeek = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ];
-var monthsOfYear = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
+const daysOfWeek = [ 
+  'Sunday', 
+  'Monday', 
+  'Tuesday', 
+  'Wednesday', 
+  'Thursday', 
+  'Friday', 
+  'Saturday' 
+];
+
+const monthsOfYear = [ 
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+];
+
+let dictionary = { 
+  daysOfWeek, 
+  monthsOfYear
+};
+
+const extendDictionary = (conf) => 
+  Object.keys(conf).forEach(key => {
+    if(dictionary[key] && dictionary[key].length == conf[key].length) {
+      dictionary[key] = conf[key];
+    }
+  });
+
+const resetDictionary = () => extendDictionary({daysOfWeek,monthsOfYear});
 
 var acceptedDateTokens = [
-  // d: day of the month, 2 digits with leading zeros:
-  { key: 'd', method: function(date) { return enforceLength(date.getDate(), 2); } },
-  // D: textual representation of day, 3 letters: Sun thru Sat
-  { key: 'D', method: function(date) { return enforceLength(daysOfWeek[date.getDay()],3); } },
-  // j: day of month without leading 0's
-  { key: 'j', method: function(date) { return date.getDate(); } },
-  // l: full textual representation of day of week: Sunday thru Saturday
-  { key: 'l', method: function(date) { return daysOfWeek[date.getDay()]; } },
-  // F: full text month: 'January' thru 'December'
-  { key: 'F', method: function(date) { return monthsOfYear[date.getMonth()]; } },
-  // m: 2 digit numeric month: '01' - '12':
-  { key: 'm', method: function(date) { return enforceLength(date.getMonth()+1,2); } },
-  // M: a short textual representation of the month, 3 letters: 'Jan' - 'Dec'
-  { key: 'M', method: function(date) { return enforceLength(monthsOfYear[date.getMonth()],3); } },
-  // n: numeric represetation of month w/o leading 0's, '1' - '12':
-  { key: 'n', method: function(date) { return date.getMonth() + 1; } },
-  // Y: Full numeric year, 4 digits
-  { key: 'Y', method: function(date) { return date.getFullYear(); } },
-  // y: 2 digit numeric year:
-  { key: 'y', method: function(date) { return enforceLength(date.getFullYear(),2,true); } }
+  { 
+    // d: day of the month, 2 digits with leading zeros:
+    key: 'd', 
+    method: function(date) { return enforceLength(date.getDate(), 2); } 
+  }, { 
+    // D: textual representation of day, 3 letters: Sun thru Sat
+    key: 'D', 
+    method: function(date) { return enforceLength(dictionary.daysOfWeek[date.getDay()],3); } 
+  }, { 
+    // j: day of month without leading 0's
+    key: 'j', 
+    method: function(date) { return date.getDate(); } 
+  }, { 
+    // l: full textual representation of day of week: Sunday thru Saturday
+    key: 'l', 
+    method: function(date) { return dictionary.daysOfWeek[date.getDay()]; } 
+  }, { 
+    // F: full text month: 'January' thru 'December'
+    key: 'F', 
+    method: function(date) { return dictionary.monthsOfYear[date.getMonth()]; } 
+  }, { 
+    // m: 2 digit numeric month: '01' - '12':
+    key: 'm', 
+    method: function(date) { return enforceLength(date.getMonth()+1,2); } 
+  }, { 
+    // M: a short textual representation of the month, 3 letters: 'Jan' - 'Dec'
+    key: 'M', 
+    method: function(date) { return enforceLength(dictionary.monthsOfYear[date.getMonth()],3); } 
+  }, { 
+    // n: numeric represetation of month w/o leading 0's, '1' - '12':
+    key: 'n', 
+    method: function(date) { return date.getMonth() + 1; } 
+  }, { 
+    // Y: Full numeric year, 4 digits
+    key: 'Y', 
+    method: function(date) { return date.getFullYear(); } 
+  }, { 
+    // y: 2 digit numeric year:
+    key: 'y', 
+    method: function(date) { return enforceLength(date.getFullYear(),2,true); }
+   }
 ];
 
 var acceptedTimeTokens = [
-  // a: lowercase ante meridiem and post meridiem 'am' or 'pm'
-  { key: 'a', method: function(date) { return (date.getHours() > 11) ? 'pm' : 'am'; } },
-  // A: uppercase ante merdiiem and post meridiem 'AM' or 'PM'
-  { key: 'A', method: function(date) { return (date.getHours() > 11) ? 'PM' : 'AM'; } },
-  // g: 12-hour format of an hour without leading zeros 1-12
-  { key: 'g', method: function(date) { return date.getHours() % 12 || 12; } },
-  // G: 24-hour format of an hour without leading zeros 0-23
-  { key: 'G', method: function(date) { return date.getHours(); } },
-  // h: 12-hour format of an hour with leading zeros 01-12
-  { key: 'h', method: function(date) { return enforceLength(date.getHours()%12 || 12,2); } },
-  // H: 24-hour format of an hour with leading zeros: 00-23
-  { key: 'H', method: function(date) { return enforceLength(date.getHours(),2); } },
-  // i: Minutes with leading zeros 00-59
-  { key: 'i', method: function(date) { return enforceLength(date.getMinutes(),2); } },
-  // s: Seconds with leading zeros 00-59
-  { key: 's', method: function(date) { return enforceLength(date.getSeconds(),2); } }
-  // // T: Timezone abbreviation "EST", "MDT", ...
-  // { key: 'T', method: function(date) { return date.getTimezone(); } },
-  // O: Difference to Greenwich time (GMT) in hours  +0200, -0200
-  // { key: 'O', method: function(date) { return date.getGMTOffset(); } },
-  // 'P': Difference to Greenwich time (GMT) w/ semicolon between hours:minutes +02:00
-  // { key: 'P', method: function(date) { var offset = date.getGMTOffset(); return offset.slice(0,3)+':'+offset.slice(3); } }
+  { 
+    // a: lowercase ante meridiem and post meridiem 'am' or 'pm'
+    key: 'a', 
+    method: function(date) { return (date.getHours() > 11) ? 'pm' : 'am'; } 
+  }, { 
+    // A: uppercase ante merdiiem and post meridiem 'AM' or 'PM'
+    key: 'A', 
+    method: function(date) { return (date.getHours() > 11) ? 'PM' : 'AM'; } 
+  }, { 
+    // g: 12-hour format of an hour without leading zeros 1-12
+    key: 'g', 
+    method: function(date) { return date.getHours() % 12 || 12; } 
+  }, { 
+    // G: 24-hour format of an hour without leading zeros 0-23
+    key: 'G', 
+    method: function(date) { return date.getHours(); } 
+  }, { 
+    // h: 12-hour format of an hour with leading zeros 01-12
+    key: 'h', 
+    method: function(date) { return enforceLength(date.getHours()%12 || 12,2); } 
+  }, { 
+    // H: 24-hour format of an hour with leading zeros: 00-23
+    key: 'H', 
+    method: function(date) { return enforceLength(date.getHours(),2); } 
+  }, { 
+    // i: Minutes with leading zeros 00-59
+    key: 'i', 
+    method: function(date) { return enforceLength(date.getMinutes(),2); } 
+  }, { 
+    // s: Seconds with leading zeros 00-59
+    key: 's', 
+    method: function(date) { return enforceLength(date.getSeconds(),2); }
+   }
 ];
 
-const internationalize = (days,months) => { 
-  daysOfWeek = days; 
-  monthsOfYear = months;
+/**
+ * Internationalization object for timeUtils.internationalize().
+ * @typedef internationalizeObj
+ * @property {Array} [daysOfWeek=[ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ]] daysOfWeek Weekday labels as strings, starting with Sunday.
+ * @property {Array} [monthsOfYear=[ 'January','February','March','April','May','June','July','August','September','October','November','December' ]] monthsOfYear Month labels as strings, starting with January.
+ */
+
+/**
+ * This function can be used to support additional languages by passing an object with 
+ * `daysOfWeek` and `monthsOfYear` attributes.  Each attribute should be an array of
+ * strings (ex: `daysOfWeek: ['monday', 'tuesday', 'wednesday'...]`)
+ *
+ * @param {internationalizeObj} conf
+ */
+const internationalize = (conf={}) => { 
+  extendDictionary(conf);
 };
 
 /**
@@ -136,5 +214,11 @@ const formatDate = (date,template='#{m}/#{d}/#{Y}') => {
   return template;
 };
 
+/**
+ * Small function for resetting language to English (used in testing).
+ */
+const resetInternationalization = () => resetDictionary();
+
 exports.internationalize = internationalize;
 exports.formatDate = formatDate;
+exports.resetInternationalization = resetInternationalization;

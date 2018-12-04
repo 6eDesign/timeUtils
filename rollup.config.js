@@ -8,7 +8,7 @@ let plugins = [
 	resolve(),
 	commonjs(), 
   buble(),
-  uglify()
+  // uglify()
 ]; 
 
 export default [

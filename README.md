@@ -65,6 +65,38 @@ Symbol/Token  | Type | Description | Example(s)
 | a | am/pm | Lowercase ante meridiem and post meridiem | 'am' or 'pm' |
 | A | am/pm | Uppercase ante meridiem and post meridiem | 'AM' or 'PM' |
 
+### Internationalization: 
+timeUtils provides an `internationalize` method which can be used to support multiple languages: 
+
+```javascript
+import { internationalize } from 'timeUtils';
+internationalize({
+  daysOfWeek: [
+    'Domingo',
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves',
+    'Viernes',
+    'Sábado'
+  ],
+  monthsOfYear: [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre'
+  ]
+})
+```
+
 ### Examples
 ```javascript 
 var date = new Date()
