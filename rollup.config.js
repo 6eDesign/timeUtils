@@ -5,8 +5,8 @@ import buble from 'rollup-plugin-buble';
 import pkg from './package.json';
 
 let plugins = [
-	resolve(),
-	commonjs(), 
+  resolve(),
+  commonjs(), 
   buble(),
   uglify()
 ]; 
@@ -16,7 +16,7 @@ export default [
 	{
 		input: 'src/index.js',
 		output: {
-			name: 'timeUtils',
+			name: pkg.name,
 			file: pkg.browser,
 			format: 'umd',
 			sourcemap: true
