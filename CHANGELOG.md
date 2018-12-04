@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/6eDesign/timeUtils/compare/v1.1.2...v1.1.3) (2018-12-04)
+
+
+### Bug Fixes
+
+* Add internationalization documentation and tests ([1e6437c](https://github.com/6eDesign/timeUtils/commit/1e6437c))
+* test formatting ([3acd757](https://github.com/6eDesign/timeUtils/commit/3acd757))
+* Update release script ([16983bd](https://github.com/6eDesign/timeUtils/commit/16983bd))
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/6eDesign/timeUtils/compare/v1.1.1...v1.1.2) (2018-12-03)
 
