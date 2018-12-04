@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.com/6eDesign/timeUtils.svg?branch=master)](https://travis-ci.com/6eDesign/timeUtils)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![npm version](https://badge.fury.io/js/timeUtils.svg)](https://badge.fury.io/js/timeUtils)
 
 ## 6eDesign.net
 
