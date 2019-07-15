@@ -4,7 +4,7 @@
   "description": "timeUtils.js - Time/date formatter for JavaScript which uses PHP-like syntax to easily format JavaScript date objects into legible, formatted, & human-consumable strings.",
   "main": "dist/timeUtils.cjs.js",
   "module": "dist/timeUtils.esm.js",
-  "browser": "dist/timeUtils.umd.js",
+  "browser": "dist/timeUtils.esm.js",
   "scripts": {
     "build": "env buildTarget=prod node_modules/.bin/rollup -c",
     "release": "npm run build && standard-version && git push --follow-tags origin master",
