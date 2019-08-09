@@ -104,7 +104,7 @@ var date = new Date()
 > Mon Apr 06 2015 21:51:08 GMT-0600 (Mountain Daylight Time)
 
 ```javascript
-timeUtils.formatDate(date,'Your appointment is on #{l}, #{F} #{m}, #{Y} at #{g}:#{i} #{A}.')
+timeUtils.formatDate(date,'Your appointment is on #{l}, #{F} #{j}, #{Y} at #{g}:#{i} #{A}.')
 ```
 
-> "Your appointment is on Monday, April 04, 2015 at 9:48 PM."
+> "Your appointment is on Monday, April 6, 2015 at 9:48 PM."
