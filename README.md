@@ -9,9 +9,11 @@ Simple time/date formatter for JavaScript which uses PHP-like syntax to easily f
 
 First, install the module via NPM: 
 
-```npm install --save timeUtils```
+```npm i timeUtils```
 
-Then include the module..
+Note: add --save if you are using npm < 5.0.0
+
+Then include the module...
 
 As an import: 
 
