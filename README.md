@@ -9,9 +9,7 @@ Simple time/date formatter for JavaScript which uses PHP-like syntax to easily f
 
 First, install the module via NPM: 
 
-```npm i timeUtils```
-
-Note: add --save if you are using npm < 5.0.0
+```npm i timeUtils```[<sup>1</sup>](#1)
 
 Then include the module...
 
@@ -110,3 +108,5 @@ timeUtils.formatDate(date,'Your appointment is on #{l}, #{F} #{j}, #{Y} at #{g}:
 ```
 
 > "Your appointment is on Monday, April 6, 2015 at 9:48 PM."
+
+<a class="anchor" id="1"></a><sup>1</sup> add --save if you are using npm < 5.0.0
