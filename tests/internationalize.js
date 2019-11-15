@@ -3,27 +3,27 @@ import { internationalize, formatDate } from '../dist/timeUtils.esm.js';
 import formatterAssertions from './lib/formatterAssertions';
 
 const daysOfWeek = [
-  'Domingo',
-  'Lunes',
-  'Martes',
-  'Miércoles',
-  'Jueves',
-  'Viernes',
-  'Sábado'
+  [ 'Domingo', 'Dom' ],
+  [ 'Lunes', 'Lun' ],
+  [ 'Martes', 'Mar' ],
+  [ 'Miércoles', 'Mié' ],
+  [ 'Jueves', 'Jue' ],
+  [ 'Viernes', 'Vie' ],
+  [ 'Sábado', 'Sáb' ],
 ];
 const monthsOfYear = [
-  'Enero',
-  'Febrero',
-  'Marzo',
-  'Abril',
-  'Mayo',
-  'Junio',
-  'Julio',
-  'Agosto',
-  'Septiembre',
-  'Octubre',
-  'Noviembre',
-  'Diciembre'
+  [ 'Enero', 'Ene' ],
+  [ 'Febrero', 'Feb' ],
+  [ 'Marzo', 'Mar' ],
+  [ 'Abril', 'Abr' ],
+  [ 'Mayo', 'May' ],
+  [ 'Junio', 'Jun' ],
+  [ 'Julio', 'Jul' ],
+  [ 'Agosto', 'Ago' ],
+  [ 'Septiembre', 'Sep' ],
+  [ 'Octubre', 'Oct' ],
+  [ 'Noviembre', 'Nov' ],
+  [ 'Diciembre', 'Dic' ],
 ];
 
 

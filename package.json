@@ -8,9 +8,9 @@
   "scripts": {
     "build": "env buildTarget=prod node_modules/.bin/rollup -c",
     "release": "npm run build && standard-version && git push --follow-tags origin master",
-    "executeTests": "node_modules/.bin/tape -r 'esm' 'tests/*.js' | tap-spec",
+    "executeTests": "tape -r esm tests/*.js | tap-spec",
     "test": "npm run build && npm run executeTests",
-    "watch": "node_modules/.bin/rollup -c -w"
+    "watch": "./node_modules/.bin/rollup -c -w"
   },
   "repository": {
     "type": "git",
@@ -22,15 +22,15 @@
     "url": "https://github.com/6eDesign/timeUtils/issues"
   },
   "devDependencies": {
-    "esm": "^3.0.84",
+    "esm": "^3.2.25",
     "npm-run-all": "^4.1.5",
     "rollup": "^0.67.4",
-    "rollup-plugin-buble": "^0.19.4",
-    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-uglify": "^6.0.0",
+    "rollup-plugin-uglify": "^6.0.3",
     "standard-version": "^4.4.0",
     "tap-spec": "^5.0.0",
-    "tape": "^4.9.1"
+    "tape": "^4.11.0"
   }
 }

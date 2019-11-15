@@ -1,26 +1,26 @@
 const daysOfWeek = [ 
-  'Sunday', 
-  'Monday', 
-  'Tuesday', 
-  'Wednesday', 
-  'Thursday', 
-  'Friday', 
-  'Saturday' 
+  [ 'Sunday', 'Sun' ],
+  [ 'Monday', 'Mon' ],
+  [ 'Tuesday', 'Tue' ],
+  [ 'Wednesday', 'Wed' ],
+  [ 'Thursday', 'Thu' ],
+  [ 'Friday', 'Fri' ],
+  [ 'Saturday', 'Sat' ]
 ];
 
 const monthsOfYear = [ 
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
+  [ 'January', 'Jan' ],
+  [ 'February', 'Feb' ],
+  [ 'March', 'Mar' ],
+  [ 'April', 'Apr' ],
+  [ 'May', 'May' ],
+  [ 'June', 'Jun' ],
+  [ 'July', 'Jul' ],
+  [ 'August', 'Aug' ],
+  [ 'September', 'Sep' ],
+  [ 'October', 'Oct' ],
+  [ 'November', 'Nov' ],
+  [ 'December', 'Dec' ]
 ];
 
 export let dictionary = { 

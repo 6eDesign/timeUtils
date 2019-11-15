@@ -69,31 +69,30 @@ timeUtils provides an `internationalize` method which can be used to support mul
 
 ```javascript
 import { internationalize } from 'timeUtils';
-internationalize({
-  daysOfWeek: [
-    'Domingo',
-    'Lunes',
-    'Martes',
-    'Miércoles',
-    'Jueves',
-    'Viernes',
-    'Sábado'
-  ],
-  monthsOfYear: [
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre'
-  ]
-})
+const daysOfWeek = [
+  [ 'Domingo', 'Dom' ],
+  [ 'Lunes', 'Lun' ],
+  [ 'Martes', 'Mar' ],
+  [ 'Miércoles', 'Mié' ],
+  [ 'Jueves', 'Jue' ],
+  [ 'Viernes', 'Vie' ],
+  [ 'Sábado', 'Sáb' ],
+];
+const monthsOfYear = [
+  [ 'Enero', 'Ene' ],
+  [ 'Febrero', 'Feb' ],
+  [ 'Marzo', 'Mar' ],
+  [ 'Abril', 'Abr' ],
+  [ 'Mayo', 'May' ],
+  [ 'Junio', 'Jun' ],
+  [ 'Julio', 'Jul' ],
+  [ 'Agosto', 'Ago' ],
+  [ 'Septiembre', 'Sep' ],
+  [ 'Octubre', 'Oct' ],
+  [ 'Noviembre', 'Nov' ],
+  [ 'Diciembre', 'Dic' ],
+];
+internationalize({ daysOfWeek, monthsOfYear });
 ```
 
 ### Examples

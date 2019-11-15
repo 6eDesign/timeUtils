@@ -9,7 +9,7 @@ var acceptedDateTokens = [
   }, { 
     // D: textual representation of day, 3 letters: Sun thru Sat
     key: 'D', 
-    method: function(date) { return enforceLength(dictionary.daysOfWeek[date.getDay()],3); } 
+    method: function(date) { return dictionary.daysOfWeek[date.getDay()][1]; } 
   }, { 
     // j: day of month without leading 0's
     key: 'j', 
@@ -17,11 +17,11 @@ var acceptedDateTokens = [
   }, { 
     // l: full textual representation of day of week: Sunday thru Saturday
     key: 'l', 
-    method: function(date) { return dictionary.daysOfWeek[date.getDay()]; } 
+    method: function(date) { return dictionary.daysOfWeek[date.getDay()][0]; } 
   }, { 
     // F: full text month: 'January' thru 'December'
     key: 'F', 
-    method: function(date) { return dictionary.monthsOfYear[date.getMonth()]; } 
+    method: function(date) { return dictionary.monthsOfYear[date.getMonth()][0]; } 
   }, { 
     // m: 2 digit numeric month: '01' - '12':
     key: 'm', 
@@ -29,7 +29,7 @@ var acceptedDateTokens = [
   }, { 
     // M: a short textual representation of the month, 3 letters: 'Jan' - 'Dec'
     key: 'M', 
-    method: function(date) { return enforceLength(dictionary.monthsOfYear[date.getMonth()],3); } 
+    method: function(date) { return dictionary.monthsOfYear[date.getMonth()][1]; } 
   }, { 
     // n: numeric represetation of month w/o leading 0's, '1' - '12':
     key: 'n', 
