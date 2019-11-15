@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/6eDesign/timeUtils/compare/v1.1.6...v2.0.0) (2019-11-15)
+
+
+### Features
+
+* **internationalization:** improve internationalize() function ([2875b35](https://github.com/6eDesign/timeUtils/commit/2875b35))
+
+
+### BREAKING CHANGES
+
+* **internationalization:** improve internationalize() with updated daysOfWeek/monthsOfYear configuration schemas
+
+
+
 <a name="1.1.6"></a>
 ## [1.1.6](https://github.com/6eDesign/timeUtils/compare/v1.1.5...v1.1.6) (2019-11-15)
 
